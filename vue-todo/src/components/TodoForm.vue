@@ -34,8 +34,12 @@
     methods: {
       createToDo() {
         const date = new Date();
-        const formatDate = `${date.getDate()}.${date.getMonth() + 1} at ${date.getHours()}:${date.getMinutes()}`;
-        
+        const day = `${date.getDate()}`.padStart(2,0);
+        const month =  `${date.getMonth() + 1}`.padStart(2,0);
+        const hour = `${date.getHours()}`.padStart(2,0);
+        const min = `${date.getMinutes()}`.padStart(2,0);
+        const formatDate = `${day}.${month} at ${hour}:${min}`;
+
         this.todo.time = formatDate;
         this.todo.id = Date.now()
 
@@ -49,7 +53,7 @@
       },
       setError(boolean) {
         this.isError = boolean;
-      }
+      },
     }
   };
 </script>
