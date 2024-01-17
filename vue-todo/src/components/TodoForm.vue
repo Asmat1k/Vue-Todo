@@ -1,17 +1,19 @@
 <template>
   <form class="form" @submit.prevent>
     <MyInput
+      id="title"
       v-model="todo.title"
       placeholder="Title..."
     />
     <MyInput
+      id="body"
       v-model="todo.body"
-      placeholder="Body..."
+      placeholder="To do..."
     />
     <MyButton
       @click="createToDo"
     >
-    Add
+      Add
     </MyButton>
   </form>
   <div v-if="isError" class="error">Fill the form!</div>
@@ -28,6 +30,7 @@
         isError: false,
       };
     },
+    emits: ['create'],
     methods: {
       createToDo() {
         const date = new Date();
@@ -39,8 +42,8 @@
         if (this.todo.time > 0 || this.todo.body.length > 0) {
           this.$emit('create', this.todo);
           this.setError(false);
-        } else {
           this.todo.title = this.todo.body = '';
+        } else {
           this.setError(true);
         }
       },

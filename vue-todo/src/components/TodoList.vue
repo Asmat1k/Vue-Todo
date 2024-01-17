@@ -3,7 +3,7 @@
     <TodoItem 
       v-for="todo in todos"
       :todo="todo"
-      :key="todo.time"
+      :key="todo.id"
       @remove="$emit('remove', todo)"
     />
   </div>
