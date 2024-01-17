@@ -30,7 +30,9 @@
       createToDo() {
         const date = new Date();
         const formatDate = `${date.getDate()}.${date.getMonth() + 1} at ${date.getHours()}:${date.getMinutes()}`;
+        
         this.todo.time = formatDate;
+        this.todo.id = Date.now()
 
         this.$emit('create', this.todo);
 

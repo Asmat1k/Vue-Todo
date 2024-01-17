@@ -1,6 +1,6 @@
 <template>
   <TodoForm @create="createTodo"/>
-  <TodoList :todos="todos" />
+  <TodoList :todos="todos" @remove="removeTodo"/>
 </template>
 
 <script>
@@ -11,13 +11,16 @@
     components: { TodoForm, TodoList },
     data() {
       return {
-        todos: [ {title: 'Home', body: 'Do homework', time: '17.01 at 18:30'},  ],
+        todos: [ { id: 0, title: 'Home', body: 'Do homework', time: '17.01 at 18:30'},  ],
       }
     },
     methods: {
       createTodo(todo) {
         const newTodo = {...todo};
         this.todos.push(newTodo);
+      },
+      removeTodo(todoToDelete) {
+        this.todos = this.todos.filter((todo) => todo.id !== todoToDelete.id);
       }
     }
 };
