@@ -20,6 +20,7 @@
       <TodoForm v-if="!isViewModeOn" @create="createTodo"/>
       <TodoList v-else :todos="todos" @remove="removeTodo"/>
     </div>
+    <div class="dev">dev by <a class="link" href="https://github.com/Asmat1k">asmat1k</a></div>
   </div>
 </template>
 
@@ -69,6 +70,7 @@
     align-items: center;
     justify-content: center;
 
+    padding: 0 15px;
     height: 100vh;
   }
   .container {
@@ -95,6 +97,8 @@
     height: 100%;
   }
   .controls-btn {
+    cursor: pointer;
+    
     background-color: transparent;
     border: 1px solid #173f88;
     border-radius: 10px;
@@ -118,5 +122,13 @@
     padding: 10px 15px;
 
     width: 100%;
+  }
+  .dev {
+    text-align: center;
+    color: #02266a;
+    font-size: 10px;
+  }
+  .link {
+    color: #02266a; 
   }
 </style>

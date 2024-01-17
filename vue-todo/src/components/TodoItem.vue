@@ -32,13 +32,19 @@
     border-radius: 10px;
 
     padding: 10px;
+    height: 100%;
   }
   .content {
-    width: 70%;
+    width: 80%;
+    height: 100%;
+    word-wrap: break-word;
   }
   .title {
     font-size: 15px;
     text-transform: capitalize;
+  }
+  .body {
+    font-size: 13px;
   }
   .time {
     font-size: 10px;
