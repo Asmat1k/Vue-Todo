@@ -1,13 +1,21 @@
 <template>
-  <div v-for="todo in todos">
-    <div>Title:{{ todo.title }}</div>
-    <div>Text:{{ todo.body }}</div>
-    <div>Time: {{ todo.time }}</div>
+  <div>
+    <h1>list</h1>
+    <TodoItem 
+      v-for="todo in todos"
+      :todo="todo"
+      :key="todo.time" 
+    />
   </div>
 </template>
 
 <script>
+  import TodoItem from './TodoItem.vue';
+
   export default {
+    components: {
+      TodoItem,
+    },
     props: {
       todos: {
         type: Array,
