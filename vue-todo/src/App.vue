@@ -69,6 +69,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #3c7aed;
 
     padding: 0 15px;
     height: 100vh;

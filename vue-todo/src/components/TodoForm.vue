@@ -14,6 +14,7 @@
     Add
     </MyButton>
   </form>
+  <div v-if="isError" class="error">Fill the form!</div>
 </template>
 
 <script>
@@ -23,7 +24,8 @@
         todo: {
           title: '',
           body: '',
-        }
+        },
+        isError: false,
       };
     },
     methods: {
@@ -34,9 +36,16 @@
         this.todo.time = formatDate;
         this.todo.id = Date.now()
 
-        this.$emit('create', this.todo);
-
-        this.todo.title = this.todo.body = '';
+        if (this.todo.time > 0 || this.todo.body.length > 0) {
+          this.$emit('create', this.todo);
+          this.setError(false);
+        } else {
+          this.todo.title = this.todo.body = '';
+          this.setError(true);
+        }
+      },
+      setError(boolean) {
+        this.isError = boolean;
       }
     }
   };
@@ -52,5 +61,11 @@
     border-radius: 10px;
 
     padding: 10px;
+  }
+  .error {
+    text-align: center;
+    color: red;
+    font-weight: 700;
+    margin: 10px 0;
   }
 </style>
