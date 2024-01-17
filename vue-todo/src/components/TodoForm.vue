@@ -43,5 +43,14 @@
 </script>
 
 <style>
-  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border: 1px solid #173f88;
+    border-radius: 10px;
+
+    padding: 10px;
+  }
 </style>

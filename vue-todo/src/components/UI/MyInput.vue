@@ -3,6 +3,7 @@
     :value="modelValue"
     @input="updateInput"
     type="text"
+    class="input"
   >
 </template>
 
@@ -21,5 +22,11 @@
 </script>
 
 <style>
+  .input {
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 10px;
 
+    width: 100%;
+  }
 </style>
