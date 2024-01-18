@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="item"
   >
     <div class="content" v-bind:class="{ done: todo.done }" >
@@ -14,7 +14,6 @@
       >
         ✔️
       </MyButton>
-      <MyButton @click="$emit('change', todo)" >✏️</MyButton>
       <MyButton @click="$emit('remove', todo)">❌</MyButton>
     </div>    
   </div>
