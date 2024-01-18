@@ -26,7 +26,7 @@
         :todos="todos"
         @mark="markTodo"
         @remove="removeTodo"
-        @change="changeViewMode"
+        @change="changeTodo"
       />
     </div>
     <div class="dev">dev by <a class="link" href="https://github.com/Asmat1k">asmat1k</a></div>

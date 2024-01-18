@@ -22,10 +22,12 @@
 
     padding: 5px;
   }
-  .btn:hover {
-    cursor: pointer;
-    
-    background-color: #173f88;
-    color: white;
+  @media (hover:hover) {
+    .btn:hover {
+      cursor: pointer;
+      
+      background-color: #173f88;
+      color: white;
+    } 
   }
 </style>
