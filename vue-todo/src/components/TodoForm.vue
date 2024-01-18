@@ -13,12 +13,13 @@
       placeholder="To do..."
     />
     <MyButton
+      class="btn"
       @click="handleClick"
     >
       Add
     </MyButton>
+    <div v-if="isError" class="error">It's empty...</div>
   </form>
-  <div v-if="isError" class="error">Fill the form!</div>
 </template>
 
 <script>
@@ -63,8 +64,10 @@
   };
 </script>
 
-<style>
+<style scoped>
   .form {
+    position:  relative;
+
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -74,10 +77,20 @@
 
     padding: 10px;
   }
+  .btn {
+    align-self: flex-end;
+    padding: 5px 10px;
+  }
   .error {
+    position: absolute;
+    bottom: 10px;
+    right: 95px;
+
+
+    text-transform: lowercase;
     text-align: center;
     color: red;
-    font-weight: 700;
-    margin: 10px 0;
+
+    padding: 5px;
   }
 </style>

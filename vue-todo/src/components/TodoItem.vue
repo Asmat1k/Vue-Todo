@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="!isEditMode"
     class="item"
   >
     <div class="content" v-bind:class="{ done: todo.done }" >
@@ -14,8 +15,13 @@
       >
         ✔️
       </MyButton>
+      <MyButton @click="changeIsEditMode">✏️</MyButton>
       <MyButton @click="$emit('remove', todo)">❌</MyButton>
     </div>    
+  </div>
+  <div v-else class="wrapper">
+    <TodoForm  />
+    <MyButton class="close" @click="changeIsEditMode">back</MyButton>
   </div>
 </template>
 
@@ -24,10 +30,21 @@
   import MyButton from './UI/MyButton.vue';
 
   export default {
+    data() {
+      return {
+        isEditMode: false,
+      }
+    },
+    emits: ['remove', 'change', 'mark'],
     props: {
       todo: {
         type: Object,
         required: true,
+      }
+    },
+    methods: {
+      changeIsEditMode() {
+        this.isEditMode = !this.isEditMode;
       }
     },
     components: { MyButton, TodoForm }
@@ -93,5 +110,13 @@
     justify-content: center;
 
     gap: 5px;
+  }
+  .wrapper {
+    position: relative;
+  }
+  .close {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
   }
 </style>

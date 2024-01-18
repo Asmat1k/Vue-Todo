@@ -19,6 +19,7 @@
     components: {
       TodoItem,
     },
+    emits: ['remove', 'change', 'mark'],
     props: {
       todos: {
         type: Array,
