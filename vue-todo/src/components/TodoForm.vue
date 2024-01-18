@@ -23,11 +23,6 @@
 
 <script>
   export default {
-    props: {
-      editedTodoId: {
-        type: Number,
-      },
-    },
     data() {
       return {
         todo: {
@@ -48,11 +43,9 @@
         const formatDate = `${day}.${month} at ${hour}:${min}`;
 
         this.todo.time = formatDate;
-        if (this.editedTodoId <= -1){
-          this.todo.id = Date.now()
-        } else {
-          this.todo.id = this.editedTodoId;
-        }
+
+        this.todo.done = false;
+        this.todo.id = Date.now()
 
         if (this.todo.title.length > 0 && this.todo.body.length > 0) {
           this.$emit('func', this.todo);

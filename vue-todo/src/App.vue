@@ -19,7 +19,6 @@
     <div class="content">
       <TodoForm
         v-if="!isViewModeOn"
-        :editedTodoId="-1"
         @func="createTodo"
       />
       <TodoList 
@@ -43,7 +42,7 @@
     components: { TodoForm, TodoList, MyButton },
     data() {
       return {
-        todos: [ { done: false, id: 0, title: 'Home', body: 'Do homework', time: '17.01 at 18:30' },  ],
+        todos: [],
         isViewModeOn: true,
       }
     },
@@ -51,9 +50,13 @@
       createTodo(todo) {
         const newTodo = {...todo};
         this.todos.push(newTodo);
+
+        localStorage.setItem('todos', JSON.stringify(this.todos));
       },
       removeTodo(todoToDelete) {
         this.todos = this.todos.filter((todo) => todo.id !== todoToDelete.id);
+
+        localStorage.setItem('todos', JSON.stringify(this.todos));
       },
       changeTodo(editedTodo) {
         this.todos = this.todos.map((todo) => {
@@ -62,6 +65,8 @@
           }
           return todo;
         })
+
+        localStorage.setItem('todos', JSON.stringify(this.todos));
       },
       markTodo(markedTodo) {
         this.todos = this.todos.map((todo) => {
@@ -70,9 +75,16 @@
           }
           return todo;
         })
+
+        localStorage.setItem('todos', JSON.stringify(this.todos));
       },
       changeViewMode() {
         this.isViewModeOn = !this.isViewModeOn;
+      }
+    },
+    mounted() {
+      if (localStorage.getItem('todos')) {
+        this.todos = JSON.parse(localStorage.getItem('todos'));
       }
     }
 };
