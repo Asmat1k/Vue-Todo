@@ -20,7 +20,7 @@
     font-weight: 700;
     color: #173f88;
 
-    padding: 5px 10px;
+    padding: 5px;
   }
   .btn:hover {
     cursor: pointer;

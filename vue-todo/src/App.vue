@@ -17,8 +17,18 @@
       </button>
     </div>
     <div class="content">
-      <TodoForm v-if="!isViewModeOn" @create="createTodo"/>
-      <TodoList v-else :todos="todos" @remove="removeTodo"/>
+      <TodoForm
+        v-if="!isViewModeOn"
+        :editedTodoId="-1"
+        @func="createTodo"
+      />
+      <TodoList 
+        v-else
+        :todos="todos"
+        @mark="markTodo"
+        @remove="removeTodo"
+        @change="changeViewMode"
+      />
     </div>
     <div class="dev">dev by <a class="link" href="https://github.com/Asmat1k">asmat1k</a></div>
   </div>
@@ -33,7 +43,7 @@
     components: { TodoForm, TodoList, MyButton },
     data() {
       return {
-        todos: [ { id: 0, title: 'Home', body: 'Do homework', time: '17.01 at 18:30'},  ],
+        todos: [ { done: false, id: 0, title: 'Home', body: 'Do homework', time: '17.01 at 18:30' },  ],
         isViewModeOn: true,
       }
     },
@@ -44,6 +54,22 @@
       },
       removeTodo(todoToDelete) {
         this.todos = this.todos.filter((todo) => todo.id !== todoToDelete.id);
+      },
+      changeTodo(editedTodo) {
+        this.todos = this.todos.map((todo) => {
+          if (todo.id === editedTodo.id) {
+            return {...todo, ...editedTodo};
+          }
+          return todo;
+        })
+      },
+      markTodo(markedTodo) {
+        this.todos = this.todos.map((todo) => {
+          if (todo.id === markedTodo.id) {
+            return {...todo, done: !markedTodo.done};
+          }
+          return todo;
+        })
       },
       changeViewMode() {
         this.isViewModeOn = !this.isViewModeOn;
@@ -60,10 +86,6 @@
     padding: 0;
     box-sizing: border-box;
   } 
-  .content::-webkit-scrollbar-track {border-radius: 2px;}
-  .content::-webkit-scrollbar {width: 4px;}
-  .content::-webkit-scrollbar-thumb {border-radius: 2px;background: #6a7d9b;}
-  .content:hover::-webkit-scrollbar-thumb {background: white;}
   #app {
     z-index: 2;
     display: flex;
@@ -97,6 +119,10 @@
     overflow-y: auto;
     height: 100%;
   }
+  .content::-webkit-scrollbar-track {border-radius: 2px;}
+  .content::-webkit-scrollbar {width: 4px;}
+  .content::-webkit-scrollbar-thumb {border-radius: 2px;background: #6a7d9b;}
+  .content:hover::-webkit-scrollbar-thumb {background: white;}
   .controls-btn {
     cursor: pointer;
     

@@ -3,15 +3,17 @@
     <MyInput
       id="title"
       v-model="todo.title"
+      maxlength="22"
       placeholder="Title..."
     />
     <MyInput
       id="body"
       v-model="todo.body"
+      maxlength="70"
       placeholder="To do..."
     />
     <MyButton
-      @click="createToDo"
+      @click="handleClick"
     >
       Add
     </MyButton>
@@ -21,6 +23,11 @@
 
 <script>
   export default {
+    props: {
+      editedTodoId: {
+        type: Number,
+      },
+    },
     data() {
       return {
         todo: {
@@ -30,9 +37,9 @@
         isError: false,
       };
     },
-    emits: ['create'],
+    emits: ['func'],
     methods: {
-      createToDo() {
+      handleClick() {
         const date = new Date();
         const day = `${date.getDate()}`.padStart(2,0);
         const month =  `${date.getMonth() + 1}`.padStart(2,0);
@@ -41,10 +48,15 @@
         const formatDate = `${day}.${month} at ${hour}:${min}`;
 
         this.todo.time = formatDate;
-        this.todo.id = Date.now()
+        if (this.editedTodoId <= -1){
+          this.todo.id = Date.now()
+        } else {
+          this.todo.id = this.editedTodoId;
+        }
 
-        if (this.todo.time > 0 || this.todo.body.length > 0) {
-          this.$emit('create', this.todo);
+        if (this.todo.title.length > 0 && this.todo.body.length > 0) {
+          this.$emit('func', this.todo);
+
           this.setError(false);
           this.todo.title = this.todo.body = '';
         } else {
