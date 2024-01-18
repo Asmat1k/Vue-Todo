@@ -47,7 +47,7 @@
         this.todo.done = false;
         this.todo.id = Date.now()
 
-        if (this.todo.title.length > 0 && this.todo.body.length > 0) {
+        if (this.todo.title.trim().length > 0 && this.todo.body.trim().length > 0) {
           this.$emit('func', this.todo);
 
           this.setError(false);
