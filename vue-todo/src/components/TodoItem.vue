@@ -20,7 +20,7 @@
     </div>    
   </div>
   <div v-else class="wrapper">
-    <TodoForm  />
+    <TodoForm :changeTodo="{...todo}" :changeFunc="changeFunc"/>
     <MyButton class="close" @click="changeIsEditMode">back</MyButton>
   </div>
 </template>
@@ -40,7 +40,10 @@
       todo: {
         type: Object,
         required: true,
-      }
+      },
+      changeFunc: {
+        type: Function,
+      },
     },
     methods: {
       changeIsEditMode() {

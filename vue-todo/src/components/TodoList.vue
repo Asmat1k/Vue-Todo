@@ -6,7 +6,7 @@
       :key="todo.id"
       @mark="$emit('mark', todo)"
       @remove="$emit('remove', todo)"
-      @change="$emit('change', todo)"
+      :changeFunc="changeFunc"
     />
   </div>
   <div v-else class="empty">List is empty...</div>
@@ -24,7 +24,10 @@
       todos: {
         type: Array,
         required: true,
-      }
+      },
+      changeFunc: {
+        type: Function,
+      },
     },
   };
 </script>

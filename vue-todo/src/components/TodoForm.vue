@@ -24,6 +24,14 @@
 
 <script>
   export default {
+    props: {
+      changeTodo: {
+        type: Object,
+      },
+      changeFunc: {
+        type: Function,
+      },
+    },
     data() {
       return {
         todo: {
@@ -46,10 +54,11 @@
         this.todo.time = formatDate;
 
         this.todo.done = false;
-        this.todo.id = Date.now()
-
+        if (!this.changeTodo) this.todo.id = Date.now()
+        
         if (this.todo.title.trim().length > 0 && this.todo.body.trim().length > 0) {
-          this.$emit('func', this.todo);
+          if (this.changeFunc) this.changeFunc({...this.changeTodo, ...this.todo});
+          else this.$emit('func', this.todo);
 
           this.setError(false);
           this.todo.title = this.todo.body = '';
