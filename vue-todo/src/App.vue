@@ -80,7 +80,7 @@
       },
       changeViewMode() {
         this.isViewModeOn = !this.isViewModeOn;
-      }
+      },
     },
     mounted() {
       if (localStorage.getItem('todos')) {

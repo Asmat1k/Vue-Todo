@@ -1,5 +1,5 @@
 <template>
-  <form class="form" @submit.prevent>
+  <form class="form" @submit.prevent="handleClick">
     <MyInput
       id="title"
       v-model="todo.title"
@@ -14,7 +14,6 @@
     />
     <MyButton
       class="btn"
-      @click="handleClick"
     >
       Add
     </MyButton>
@@ -55,7 +54,7 @@
 
         this.todo.done = false;
         if (!this.changeTodo) this.todo.id = Date.now()
-        
+
         if (this.todo.title.trim().length > 0 && this.todo.body.trim().length > 0) {
           if (this.changeFunc) this.changeFunc({...this.changeTodo, ...this.todo});
           else this.$emit('func', this.todo);

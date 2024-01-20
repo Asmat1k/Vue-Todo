@@ -20,7 +20,7 @@
     </div>    
   </div>
   <div v-else class="wrapper">
-    <TodoForm :changeTodo="{...todo}" :changeFunc="changeFunc"/>
+    <TodoForm :changeTodo="{...todo}" :changeFunc="changeTodoItemInList"/>
     <MyButton class="close" @click="changeIsEditMode">back</MyButton>
   </div>
 </template>
@@ -48,6 +48,10 @@
     methods: {
       changeIsEditMode() {
         this.isEditMode = !this.isEditMode;
+      },
+      changeTodoItemInList(newTodo) {
+        this.changeFunc(newTodo);
+        this.changeIsEditMode();
       }
     },
     components: { MyButton, TodoForm }
