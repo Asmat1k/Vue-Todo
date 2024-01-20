@@ -4,13 +4,13 @@
       id="title"
       v-model="todo.title"
       maxlength="22"
-      placeholder="Title..."
+      :placeholder="changeTodo ? changeTodo.title : 'Title...'"
     />
     <MyInput
       id="body"
       v-model="todo.body"
       maxlength="70"
-      placeholder="To do..."
+      :placeholder="changeTodo ? changeTodo.body : 'To do...'"
     />
     <MyButton
       class="btn"
